@@ -1,0 +1,16 @@
+services:
+  osw-studio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - /etc/dokploy/compose/ai-oswstudio-jwpiko/config/.env
+    environment:
+      DATA_DIR: /storage/data
+      DEPLOYMENTS_DIR: /storage/deployments
+    expose:
+      - "7860"
+    volumes:
+      - /etc/dokploy/compose/ai-oswstudio-jwpiko/storage/data:/storage/data
+      - /etc/dokploy/compose/ai-oswstudio-jwpiko/storage/deployments:/storage/deployments
+      - /etc/dokploy/compose/ai-oswstudio-jwpiko/storage/public-deployments:/app/public/deployments
