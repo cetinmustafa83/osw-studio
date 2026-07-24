@@ -14,3 +14,20 @@ services:
       - /etc/dokploy/compose/ai-oswstudio-jwpiko/storage/data:/storage/data
       - /etc/dokploy/compose/ai-oswstudio-jwpiko/storage/deployments:/storage/deployments
       - /etc/dokploy/compose/ai-oswstudio-jwpiko/storage/public-deployments:/app/public/deployments
+    labels:
+      - traefik.http.routers.ai-oswstudio-jwpiko-131-web.rule=Host(`ai-oswstudio-jwpiko-8872d3-92-206-22-59.sslip.io`)
+      - traefik.http.routers.ai-oswstudio-jwpiko-131-web.entrypoints=web
+      - traefik.http.services.ai-oswstudio-jwpiko-131-web.loadbalancer.server.port=3000
+      - traefik.http.routers.ai-oswstudio-jwpiko-131-web.service=ai-oswstudio-jwpiko-131-web
+      - traefik.docker.network=dokploy-network
+      - traefik.http.routers.ai-oswstudio-jwpiko-130-web.rule=Host(`ai-oswstudio-jwpiko-66f063-92-206-22-59.sslip.io`)
+      - traefik.http.routers.ai-oswstudio-jwpiko-130-web.entrypoints=web
+      - traefik.http.services.ai-oswstudio-jwpiko-130-web.loadbalancer.server.port=3000
+      - traefik.http.routers.ai-oswstudio-jwpiko-130-web.service=ai-oswstudio-jwpiko-130-web
+      - traefik.enable=true
+    networks:
+      - dokploy-network
+      - default
+networks:
+  dokploy-network:
+    external: true
